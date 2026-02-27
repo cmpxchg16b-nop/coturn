@@ -188,10 +188,8 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends --no-install-suggests \
             libcap2-bin \
  && setcap CAP_NET_BIND_SERVICE=+ep /usr/bin/turnserver \
- # Cleanup unnecessary stuff.
- && apt-get purge -y --auto-remove \
-                  -o APT::AutoRemove::RecommendsImportant=false \
-            libcap2-bin \
+ && apt-get install -y --no-install-recommends --no-install-suggests \
+            iproute2 \
  && rm -rf /var/lib/apt/lists/*
 
 USER nobody:nogroup
